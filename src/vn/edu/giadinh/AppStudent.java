@@ -12,18 +12,18 @@ import vn.edu.giadinh.presentation.StudentListViewUI;
 public class AppStudent {
 
 	public static void main(String[] args) {
-		StudentListViewUI view = new StudentListViewUI();
 		StudentViewModel model = new StudentViewModel();
 		StudentListViewUseCase listViewUseCase  = null;
+		StudentListViewUI view = new StudentListViewUI(model);
 		StudentListViewController controller = null;
 
         
 		try {
 			StudentListViewDAO listViewDAO = new StudentListViewDAO();
 			listViewUseCase = new StudentListViewUseCase(listViewDAO);
-			controller = new StudentListViewController(model, view, listViewUseCase);
+			
+			controller = new StudentListViewController(model, listViewUseCase);
 			controller.execute();
-			view.setVisible(true);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

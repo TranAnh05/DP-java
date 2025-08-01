@@ -1,5 +1,5 @@
 package vn.edu.giadinh;
 
-public interface Subcriber {
+public interface Subscriber {
     void update();
 }

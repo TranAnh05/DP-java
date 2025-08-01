@@ -4,7 +4,7 @@ import java.util.Date;
 public abstract class Student {
     // fields protected như UML
     protected String id;
-    protected String name;
+    protected String name;  
     protected Date birthDate;
     protected String major;
 
