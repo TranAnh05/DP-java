@@ -1,9 +1,7 @@
-package vn.edu.giadinh.business;
+package vn.edu.giadinh.presentation;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import vn.edu.giadinh.Publisher;
 
 public class StudentViewModel extends Publisher{
     private List<StudentViewItem> studentList;

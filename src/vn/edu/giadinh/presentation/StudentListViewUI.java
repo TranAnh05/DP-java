@@ -3,10 +3,6 @@ package vn.edu.giadinh.presentation;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
-
-import vn.edu.giadinh.Subscriber;
-import vn.edu.giadinh.business.StudentViewItem;
-import vn.edu.giadinh.business.StudentViewModel;
 import java.awt.*;
 // import java.awt.event.*;
 
@@ -24,8 +20,6 @@ public class StudentListViewUI extends JFrame implements Subscriber{
 
         // đăng ký với viewModel (Puslisher)
         this.studentViewModel.addSubscriber(this);
-
-
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(900, 400);

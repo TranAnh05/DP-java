@@ -13,7 +13,7 @@ import java.util.List;
 
 
 
-public class StudentListViewDAO {
+public class StudentListViewDAO implements StudentGateway{
     private Connection conn;
 
     public StudentListViewDAO() throws SQLException, ClassNotFoundException {

@@ -2,26 +2,25 @@ package vn.edu.giadinh.business;
 
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.giadinh.persistence.StudentDTO;
-import vn.edu.giadinh.persistence.StudentListViewDAO;
+import vn.edu.giadinh.persistence.StudentGateway;
 
 public class StudentListViewUseCase {
-	private StudentListViewDAO listViewDAO;
+	private StudentGateway studentGateway;
 	
 	
-	public StudentListViewUseCase(StudentListViewDAO listViewDAO) {
+	public StudentListViewUseCase(StudentGateway studentGateway) {
 		super();
-		this.listViewDAO = listViewDAO;
+		this.studentGateway = studentGateway;
 	}
 	
-	public List<StudentViewItem> execute() throws SQLException, ParseException {
+	public List<StudentListViewDTO> execute() throws SQLException, ParseException {
 		List<StudentDTO> listDTO = null;
 		List<Student> students = null;
-		listDTO = listViewDAO.getAll();
+		listDTO = studentGateway.getAll();
 		
 
 
@@ -29,7 +28,7 @@ public class StudentListViewUseCase {
 		students = convertToBusinessObjects(listDTO);
 		// listViewUI.showList(students);
 
-		return convertToViewModel(students);
+		return convertToViewDTO(students);
 		
 	}
 
@@ -56,20 +55,16 @@ public class StudentListViewUseCase {
 		return students;
 	}
 
-	private List<StudentViewItem> convertToViewModel(List<Student> students) {
-		List<StudentViewItem> itemList = new ArrayList<StudentViewItem>();
-	    SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+	private List<StudentListViewDTO> convertToViewDTO(List<Student> students) {
+		List<StudentListViewDTO> itemList = new ArrayList<StudentListViewDTO>();
 
-		int stt = 1;
-		
 		for (Student student : students) {
-			StudentViewItem item = new StudentViewItem();
-			item.stt = stt++;
+			StudentListViewDTO item = new StudentListViewDTO();
 			item.id = student.getId();
 			item.name = student.getName();
-			item.birthDate = fmt.format(student.getBirthDate());
+			item.birthDate = student.getBirthDate();
 			item.major = student.getMajor();
-			item.gpa = String.format("%.2f",student.calculateGPA());
+			item.gpa = student.calculateGPA();
 			item.academicRank = student.classifyAcademic();
 			itemList.add(item);
 		}
