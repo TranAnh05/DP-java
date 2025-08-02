@@ -22,6 +22,8 @@ public class StudentListViewController {
     public void execute() throws SQLException, ParseException {
         // Lấy dữ liệu thật lên
         List<StudentListViewDTO> listStudentDTO = useCase.execute();
+
+        // convert dữ liệu từ DTO (business) sang dữ liệu presentation
         List<StudentViewItem> listStudentPresentation = convertToPresentation(listStudentDTO);
 
         // Yêu cầu model cập nhật dữ liệu mới

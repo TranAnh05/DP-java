@@ -1,6 +1,8 @@
 package vn.edu.giadinh.business;
 import java.util.Date;
 
+import vn.edu.giadinh.persistence.StudentDTO;
+
 public abstract class Student {
     // fields protected như UML
     protected String id;
